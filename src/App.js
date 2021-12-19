@@ -1,17 +1,26 @@
 import "./App.css";
-import CollectionCard from "./component/CollectionCard";
 import Header from "./component/Header";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import PunkList from "./component/PunkList";
 
 function App() {
+  const [punkListData, setPunkListData] = useState([]);
+
+  useEffect(() => {
+    const getMyNfts = async () => {
+      const openseaData = await axios.get(
+        "https://testnets-api.opensea.io/assets?order_direction=asc&asset_contract_address=0xe49131070ea03fECff907E0B9082295bfC941c84"
+      );
+      setPunkListData(openseaData.data.assets);
+    };
+    return getMyNfts();
+  }, []);
+
   return (
     <div className="app">
       <Header />
-      <CollectionCard
-        id={0}
-        name={"Bandana punk"}
-        traits={[{ value: 7 }]}
-        image="https://lh3.googleusercontent.com/p_oi7tfWbom8CyUnj4v-gJGkzeaAOjGyfgfojnhZusszQ1blEAEIVm9mlEIqCHJif52D7XVyJrqXb89l7NrmdMWPmxA1gDraCAXgIA=w600"
-      />
+      <PunkList punkListData={punkListData}/>
     </div>
   );
 }
