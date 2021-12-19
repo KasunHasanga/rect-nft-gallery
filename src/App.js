@@ -3,7 +3,9 @@ import './App.css';
 import Header from './component/Header';
 
 function App() {
-  return  <Header/>
+  return  <div className='app'>
+      <Header/>
+  </div>
   
 }
 
