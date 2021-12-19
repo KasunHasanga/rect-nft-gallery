@@ -8,8 +8,7 @@ const CollectionCard = ({ id, name, traits, image }) => {
       <img src={image} alt={name} />
       <div className="name">
         <div className="details">
-          name
-          {name} <div className="id"> .#{id}</div>
+           {name} <div className="id"> .#{id}</div>
           <div className="priceContainer">
             <img src={weth} className="wethImage" alt="" />
             <div className="price"> {traits[0]?.value}</div>
